@@ -1,6 +1,6 @@
 import os, sys, signal, time
 import threading, collections, copy
-import pyaudio, wave, snowboydetect
+import pyaudio, wave, pvporcupine
 
 from log import Log
 
