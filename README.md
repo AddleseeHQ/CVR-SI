@@ -1,5 +1,5 @@
 <h1 align="center">
-	Conditional Voice Recorder (CVR)
+	CVR-SI aka "**C**le**V**e**RS**h**I**eld": Conditional Voice Recorder (CVR) for Sensitive Information (SI).
 </h1>
 
 A system that listens for a hotword and begins audio capture. Configured to run on a Raspberry Pi 3, may work on other 
