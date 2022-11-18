@@ -22,10 +22,10 @@ You should also use the 12mm drill bit to make a large hole on the back of the C
 Then you can switch the 12mm drill bit out for the 5mm drill bit. This is used to drill two smaller holes on either side of the button. Note again that the button is already in place:
 ![CVR-SI with LED holes](./images/4-5mm-holes.jpg)
 
-Now it is time to plug in your soldering iron, we its sponge, and gather the cables (note again that the button should already be in the lid - I took this photo earlier):
+Now it is time to plug in your soldering iron, wet its sponge, and gather the cables (note again that the button should already be in the lid - I took this photo earlier):
 ![cables and soldering iron](./images/5-solder-prep.jpg)
 
-Get the circuit board and fit in the circuit board holder. You can use the second 'claw' to hold the cable in place while you solder the cable end to the board:
+Get the circuit board and fit it in the circuit board holder. You can use the second 'claw' to hold the cable in place while you solder the cable end to the board:
 ![circuit board in circuit board holder](./images/6-start-solder.jpg)
 
 Solder the board following this circuit diagram:
@@ -50,15 +50,17 @@ You can use any disc burning software, but I use balenaEtcher. Firstly, select t
 ![balenaEtcher settings](./images/10-flash-sd-setup.png)
 
 The software will be burned onto the SD card and then validated:
+
 ![balenaEtcher validating](./images/10-flash-sd-verify.png)
 
 Once complete you can eject the SD card:
+
 ![balenaEtcher burning completed](./images/10-flash-sd-x.png)
 
 The SD can then be inserted into your Raspberry Pi:
 ![Raspberry Pi with SD card inserted](./images/12-insert-sd.jpg)
 
-We can now start to put everything together. Put the Raspberry Pi power cable ind through the rear hole and into the Raspberry Pi:
+We can now start to put everything together. Put the Raspberry Pi power cable in through the rear hole and into the Raspberry Pi:
 ![power plugged into Raspberry Pi](./images/13-pi-power.jpg)
 
 Next, unbox the microphone, put the cable through the rear case hole, and plug it into the Raspberry Pi:
