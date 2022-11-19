@@ -87,6 +87,4 @@ You can now screw the lugs to secure the lid in place:
 And that's it! Your CVR-SI is complete:
 ![Completed CVR-SI](./images/20-fin.jpg)
 
-## Circuit Board Diagram
-
 ## Img Files to Burn Your Own Device
