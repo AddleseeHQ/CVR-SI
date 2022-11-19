@@ -29,7 +29,10 @@ Get the circuit board and fit it in the circuit board holder. You can use the se
 ![circuit board in circuit board holder](./images/6-start-solder.jpg)
 
 Solder the board following this circuit diagram:
-- TODO Create nice digital version of circuit diagram
+![rough circuit diagram](./images/circuit-diagram.jpg)
+
+To note, the Raspberry Pi pins are numbered in this diagram. The pins are numbered by the little circles, not the GPIO numbers. Source [here](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html):
+![Raspberry Pi pin layout](./images/pi-pins.png)
 
 Once done, the resistor wires will need to be trimmed as they are quite long:
 ![scissors trimming wires on circuit boars](./images/7-snip.jpg)
