@@ -1,8 +1,30 @@
+# Introduction
+
+This repository contains all the instructions to create a CVR-SI device - a Conditional Voice Recorder for Sensitive Information. This work started with the original [CVR](https://github.com/MixedRealityLab/conditional-voice-recorder) as its foundation - please cite the following **TWO** papers if you use this device:
+
+1. THE CVR-SI paper published at EMNLP's Workshop on Natural Language Processing for Positive Impact titled "Securely Capturing People’s Interactions with Voice Assistants at Home: A Bespoke Tool for Ethical Data Collection" by Angus Addlesee:
+```
+@inproceedings{addlesee2022bespoke,
+  title={Securely Capturing People’s Interactions with Voice Assistants at Home: A Bespoke Tool for Ethical Data Collection},
+  author={Addlesee, Angus},
+  booktitle={EMNLP's Workshop on Natural Language Processing for Positive Impact},
+  year={2022}
+}
+```
+2. The original CVR paper published at CHI titled "Voice Interfaces in Everyday Life" by Martin Porcheron, Joel Fischer, Stuart Reeves, and Sarah Sharples:
+```
+@inproceedings{porcheron2018voice,
+  title={Voice interfaces in everyday life},
+  author={Porcheron, Martin and Fischer, Joel E and Reeves, Stuart and Sharples, Sarah},
+  booktitle={proceedings of the 2018 CHI conference on human factors in computing systems},
+  pages={1--12},
+  year={2018}
+}
+```
+
 # Building the CVR-SI
 
-This work has been accepted to be published at EMNLP's Workshop on Natural Language Processing for Positive Impact.
-
-I will be including the following resources in this repository before the paper is published:
+Here you will find all the device component links, the full device construction guide, and the software.
 
 ## Links to All Required Components
 In order to build the CVR-SI, you will need (quantity needed for ONE CVR-SI in brackets):
@@ -88,3 +110,5 @@ And that's it! Your CVR-SI is complete:
 ![Completed CVR-SI](./images/20-fin.jpg)
 
 ## Img Files to Burn Your Own Device
+
+- Available upon request as files are too large to host publicly (looking for solution).
