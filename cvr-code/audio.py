@@ -1,6 +1,6 @@
 import os, sys, signal, time
 import threading, collections, copy
-import pyaudio, wave, pvporcupine
+import pyaudio, wave, snowboydetect
 
 from log import Log
 from recorder import *
@@ -15,7 +15,6 @@ class AudioHandler(object):
     """Main detector object, based on `snowboydecoder.py` from Snowboy. Snowboy 
     decoder to detect whether a keyword specified by `decoder_model` exists in a 
     microphone input stream.
-
     :param decoder_model: decoder model file path; stirng or list of strings
     :param Path resource: resource file path.
     :param sensitivity: decoder sensitivity, a float of a list of floats.
@@ -32,7 +31,7 @@ class AudioHandler(object):
     def __init__(self,
         decoder_model,
         resource=RESOURCE_FILE,
-        sensitivity=0.75,
+        sensitivity=[],
         audio_gain=1,
         continue_recording=False,
         output_dir=".",
@@ -47,23 +46,44 @@ class AudioHandler(object):
         self._continue_recording_callback = None
         self._stop_recording_callback = None
 
-        # Setup Porcupine
+        # Setup Snowboy
+        tm = type(decoder_model)
+        ts = type(sensitivity)
+        if tm is not list:
+            decoder_model = [decoder_model]
+        if ts is not list:
+            sensitivity = [sensitivity]
+        model_str = ",".join(decoder_model)
 
-        self.detector = pvporcupine.create(keywords=['alexa'], sensitivities=[sensitivity])
+        self.detector = snowboydetect.SnowboyDetect(
+            resource_filename=resource.encode(), model_str=model_str.encode())
+        self.detector.SetAudioGain(audio_gain)
+        self.num_hotwords = self.detector.NumHotwords()
+
+        if len(decoder_model) > 1 and len(sensitivity) == 1:
+            sensitivity = sensitivity*self.num_hotwords
+        if len(sensitivity) != 0:
+            assert self.num_hotwords == len(sensitivity), \
+                "number of hotwords in decoder_model (%d) and sensitivity " \
+                "(%d) does not match" % (self.num_hotwords, len(sensitivity))
+        sensitivity_str = ",".join([str(t) for t in sensitivity])
+        if len(sensitivity) != 0:
+            self.detector.SetSensitivity(sensitivity_str.encode())
 
         # create detector buffer
         self.detector_buffer = DetectorRingBuffer(
-            self.detector.sample_rate * 5)
+            self.detector.NumChannels() * self.detector.SampleRate() * 5)
         self.backward_buffer = None
 
         # connect to the PyAudio stream
         self.audio = pyaudio.PyAudio()
         self.stream_in = self.audio.open(
             input=True, output=False,
-            format=pyaudio.paInt16,
-            channels=1,
-            rate=self.detector.sample_rate,
-            frames_per_buffer=self.detector.frame_length,
+            format=self.audio.get_format_from_width(
+                self.detector.BitsPerSample() / 8),
+            channels=self.detector.NumChannels(),
+            rate=self.detector.SampleRate(),
+            frames_per_buffer=2048,
             stream_callback=self._audio_callback)
 
         # listen to interrupots
@@ -87,7 +107,6 @@ class AudioHandler(object):
         audio buffer for triggering keywords. Every loop it checks if the loop 
         has been interrupted and breaks if it has. Recording is triggered when 
         the hotword is detected.
-
         :param Int record_before: seconds to record before hotword.
         :param Int record_after: seconds to record after hotword.
         :param Float sleep_time: how much time in second every loop waits.
@@ -111,14 +130,14 @@ class AudioHandler(object):
         if callable(stop_recording_callback):
             self._stop_recording_callback = stop_recording_callback
 
-        self._bytes_per_sample=2
+        self._bytes_per_sample=self.detector.BitsPerSample() / 8
         self._record_before=record_before
         self._record_after=record_after
 
         self.backward_buffer=BackwardBuffer(
-            num_channels=1,
-            sample_rate=self.detector.sample_rate,
-            bytes_per_sample=2,
+            num_channels=self.detector.NumChannels(),
+            sample_rate=self.detector.SampleRate(),
+            bytes_per_sample=self.detector.BitsPerSample() / 8,
             record_for=record_before)
 
         Log.info(self._tag, "Started listening for hotword...")
@@ -136,7 +155,7 @@ class AudioHandler(object):
                 time.sleep(sleep_time)
                 continue
 
-            ans = self.detector.process(data)
+            ans = self.detector.RunDetection(data)
             if ans == -1:
                 Log.critical(self._tag,
                     "Error initialising streams or reading audio data")
@@ -167,16 +186,16 @@ class AudioHandler(object):
                         self._start_recording_callback()
 
                     buf_after=ForwardBuffer(
-                        num_channels=1,
-                        sample_rate=self.detector.sample_rate,
+                        num_channels=self.detector.NumChannels(),
+                        sample_rate=self.detector.SampleRate(),
                         bytes_per_sample=self._bytes_per_sample,
                         record_for=self._record_after)
 
                     self.instance_recorders.append(InstanceRecorder(
                         buf_before=self.backward_buffer,
                         buf_after=buf_after,
-                        num_channels=1,
-                        sample_rate=self.detector.sample_rate,
+                        num_channels=self.detector.NumChannels(),
+                        sample_rate=self.detector.SampleRate(),
                         bytes_per_sample=self._bytes_per_sample,
                         dir=self._output_dir,
                         delete_active_recording=self._delete_active_recording))
@@ -195,7 +214,6 @@ class AudioHandler(object):
     def interrupt(self):
         """
         Interrupt the hotword detection if it is running, otherwise do nothing.
-
         :return: None
         """
         Log.debug(self._tag, "Interrupt triggered")
@@ -212,7 +230,6 @@ class AudioHandler(object):
     def stop(self):
         """
         Temporarily stop detection. Users cannot call start() again to detect.
-
         :return: None
         """
         if not self.is_running or self.is_terminated:
@@ -233,7 +250,6 @@ class AudioHandler(object):
     def terminate(self, terminate=False):
         """
         Terminate the audio system. Cannot be recovered from
-
         :return: None
         """
         if self.is_running:
@@ -285,7 +301,6 @@ class AudioHandler(object):
         """
         Stop the audio recording to disk, called when the hotword was detected 
         some time ago.
-
         :param int index: Index of the recorder to stop (last be default) 
         :return: None
         """
@@ -297,4 +312,3 @@ class AudioHandler(object):
 
         if self._stop_recording_callback <> None:
             self._stop_recording_callback()
-

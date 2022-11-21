@@ -1,6 +1,6 @@
 import os, sys, signal, time
 import threading, collections, copy
-import pyaudio, wave, pvporcupine
+import pyaudio, wave, snowboydetect
 
 from log import Log
 
@@ -13,7 +13,6 @@ class RingBuffer(object):
 
 	"""
 	Ring buffer to hold audio from PortAudio, from the Snowboy project
-
 	:param Int size: number of bytes to store in the buffer.
 	"""
 	def __init__(self, size=4096):
@@ -56,7 +55,6 @@ class RingBuffer(object):
 class DetectorRingBuffer(RingBuffer):
 	"""
 	Ring buffer to hold audio from PortAudio, from the Snowboy project
-
 	:param Int size: number of bytes to store in the buffer.
 	"""
 
@@ -65,7 +63,6 @@ class InstanceBuffer(RingBuffer):
 
 	"""
 	Ring buffer to hold audio from PortAudio, from the Snowboy project
-
 	:param int num_channels: number of audio channels to write.
 	:param int sample_rate: sample rate
 	:param int bytes_per_sample: bytes per sample
@@ -105,7 +102,6 @@ class InstanceRecorder(object):
 
 	"""
 	Object to handle file writing that records an instance of hotword use.
-
 	:param BackwardBuffer buf_before: buffer of audio to prepend to WAV file.
 	:param ForwarRingBuffer buf_after: buffer of audio to append to WAV file.
 	:param int num_channels: number of audio channels to write.
@@ -177,7 +173,6 @@ class InstanceRecorder(object):
 		"""
 		Extend the desired length of recording after the hotword to include the 
 		next "desired_length" time.
-
 		:param int desired_length: new desired length
 		"""
 		captured_after_length=self.buf_after.total_length()/self._bytes_per_second
