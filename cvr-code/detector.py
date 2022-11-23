@@ -33,9 +33,9 @@ class Detector(object):
     """
     def __init__(self,
         decoder_model,
-        led_running_pin=24,
-        led_listening_pin=15,
-        led_recording_pin=18,
+        led_running_pin=23,
+        led_listening_pin=23,
+        led_recording_pin=14,
         sensitivity=[],
         audio_gain=1,
         continue_recording=False,
@@ -77,7 +77,7 @@ class Detector(object):
         Log.debug(self._tag, "Detector created")
 
     def wait_on_button(self,
-            button_pin=27,
+            button_pin=15,
             record_before=60,
             record_after=60,
             sleep_time=0.03,
