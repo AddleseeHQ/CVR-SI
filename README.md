@@ -50,8 +50,11 @@ Now it is time to plug in your soldering iron, wet its sponge, and gather the ca
 Get the circuit board and fit it in the circuit board holder. You can use the second 'claw' to hold the cable in place while you solder the cable end to the board:
 ![circuit board in circuit board holder](./images/6-start-solder.jpg)
 
-Solder the board following this circuit diagram:
-![rough circuit diagram](./images/circuit-diagram.jpg)
+Solder the board. I have created (with advice from Antero Duarte) two circuit diagrams. This one:
+![CVR-SI Circuit Diagram](./images/circuit.png)
+
+And the other is easier to read for those of you that are less familiar with electronics (the cells in the grid represent the holes in the circuit board):
+![easy-read circuit diagram](./images/circuit-diagram.jpg)
 
 To note, the Raspberry Pi pins are numbered in this diagram. The pins are numbered by the little circles, not the GPIO numbers. Source [here](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html):
 ![Raspberry Pi pin layout](./images/pi-pins.png)
