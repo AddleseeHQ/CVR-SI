@@ -28,7 +28,25 @@ Here you will find all the device component links, the full device construction 
 
 ## Links to All Required Components
 In order to build the CVR-SI, you will need (quantity needed for ONE CVR-SI in brackets):
-1. List incoming with links
+1. Drill with 5mm drill bit included (1): [LINK](https://amzn.to/3EQarzN)
+2. 12mm drill bit (1): [LINK](https://amzn.to/3ufZCSF)
+3. Device Case (1): [LINK](https://uk.rs-online.com/web/p/general-purpose-enclosures/0104155)
+4. Soldering Iron (1): [LINK](https://amzn.to/3OSmXmL)
+5. Circuit board holder (1): [LINK](https://amzn.to/3gLEDUv)
+6. PCB Circuit Board (1): [LINK](https://amzn.to/3B14Lld)
+7. 12mm Momentary Push Button (1): [LINK](https://amzn.to/3ub80mj)
+8. F2M Breadboard Wires (5): [LINK](https://amzn.to/3gQzuuv)
+9. Green 5mm LED with pre-attached resistor (1): [LINK](https://amzn.to/3Ujudt4)
+10. Red 5mm LED with pre-attached resistor (1): [LINK](https://amzn.to/3gLvgEt)
+11. 10k ohm resistor (1): [LINK](https://amzn.to/3AWJysP)
+12. Raspberry Pi 3 Model B+ (1): [LINK](https://uk.rs-online.com/web/p/raspberry-pi/1373331) OR if out of stock as old model, [LINK to RPi 4](https://amzn.to/3Vmztxt)
+13. Raspberry Pi Power Supply: [LINK](https://amzn.to/3AWWGOo) OR [supply for RPi 4](https://amzn.to/3gM5q30)
+14. Glue (1): [LINK](https://amzn.to/3AXd15A)
+15. Microphone (1): [LINK](https://amzn.to/3UkRudW)
+16. SD Card (1): [LINK for 16Gb](https://amzn.to/3ViAwhZ) OR [LINK for 256Gb](https://amzn.to/3ir4dyt)
+17. Screwdriver (1): [LINK](https://amzn.to/3VmduXj)
+18. Optional Box for safe transport (1): [LINK](https://amzn.to/3VljtvC)
+
 
 ## Step-by-step Construction Guide (with photos)
 
