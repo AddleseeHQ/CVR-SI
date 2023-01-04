@@ -2,7 +2,7 @@
 
 This repository contains all the instructions to create a CVR-SI device - a Conditional Voice Recorder for Sensitive Information. This work started with the original [CVR](https://github.com/MixedRealityLab/conditional-voice-recorder) as its foundation - please cite the following **TWO** papers if you use this device:
 
-1. THE CVR-SI paper published at EMNLP's Workshop on Natural Language Processing for Positive Impact titled "Securely Capturing People’s Interactions with Voice Assistants at Home: A Bespoke Tool for Ethical Data Collection" by Angus Addlesee:
+1. THE CVR-SI [paper](https://preview.aclanthology.org/emnlp-22-ingestion/2022.nlp4pi-1.3.pdf) published at EMNLP's Workshop on Natural Language Processing for Positive Impact titled "Securely Capturing People’s Interactions with Voice Assistants at Home: A Bespoke Tool for Ethical Data Collection" by Angus Addlesee:
 ```
 @inproceedings{addlesee2022bespoke,
   title={Securely Capturing People’s Interactions with Voice Assistants at Home: A Bespoke Tool for Ethical Data Collection},
@@ -11,7 +11,7 @@ This repository contains all the instructions to create a CVR-SI device - a Cond
   year={2022}
 }
 ```
-2. The original CVR paper published at CHI titled "Voice Interfaces in Everyday Life" by Martin Porcheron, Joel Fischer, Stuart Reeves, and Sarah Sharples:
+2. The original CVR [paper](https://dl.acm.org/doi/pdf/10.1145/3173574.3174214) published at CHI titled "Voice Interfaces in Everyday Life" by Martin Porcheron, Joel Fischer, Stuart Reeves, and Sarah Sharples:
 ```
 @inproceedings{porcheron2018voice,
   title={Voice interfaces in everyday life},
